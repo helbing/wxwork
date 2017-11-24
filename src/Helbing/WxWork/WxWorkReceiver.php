@@ -54,9 +54,6 @@ class WxWorkReceiver
         if ($this->autoConvert) {
             $data = Tools::convertArrayToUnderline($data);
         }
-        return [
-            $errorCode,
-            $data
-        ];
+        return [$errorCode, $data];
     }
 }
