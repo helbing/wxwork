@@ -30,14 +30,14 @@ class WxWorkReceiver
     {
         $content = file_get_contents('php://input');
 
-        $data = Tools::xml2Array($content);
+        $data = ToolsTest::xml2Array($content);
 
         $wxCpt = new \WXBizMsgCrypt($this->token, $this->encodingAesKey, $data['ToUserName']);
 
         $errCode = $wxCpt->DecryptMsg($_GET['msg_signature'], $_GET['timestamp'], $_GET['nonce'], $content, $msg);
 
         if ($errCode == 0) {
-            return $this->result(0, Tools::xml2Array($msg));
+            return $this->result(0, ToolsTest::xml2Array($msg));
         }
 
         return $this->result($errCode, null);
@@ -52,7 +52,7 @@ class WxWorkReceiver
     private function result($errorCode, $data = null)
     {
         if ($this->autoConvert) {
-            $data = Tools::convertArrayToUnderline($data);
+            $data = ToolsTest::convertArrayToUnderline($data);
         }
         return [$errorCode, $data];
     }

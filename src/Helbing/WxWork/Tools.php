@@ -66,7 +66,7 @@ class Tools
     public static function convertToCamelCase($unCamp, $separator = '_')
     {
         $unCampWord = $separator . str_replace($separator, ' ', strtolower($unCamp));
-        return ltrim(str_replace(' ', '', ucwords($unCampWord)), $separator);
+        return ucfirst(ltrim(str_replace(' ', '', ucwords($unCampWord)), $separator));
     }
 
     /**
